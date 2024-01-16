@@ -3,7 +3,8 @@ package Entidades;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+@Entity
+@Table(name = "cafes_types")
 public class CafeTypes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
