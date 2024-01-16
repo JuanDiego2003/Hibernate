@@ -1,13 +1,19 @@
 package Entidades;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CafeTypes {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany(cascade = CascadeType.ALL)
     private int id;
     @Column(name = "cafe type")
     private String cafeType;
-    @Column(name = "id pais")
-    private int id_Pais ;
+
+    @ManyToMany()
+    private Set<InfoPais> paises = new HashSet<>();
+
+
 }

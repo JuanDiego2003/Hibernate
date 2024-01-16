@@ -1,4 +1,4 @@
-import Entidades.Cafes;
+import Entidades.InfoPais;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,8 +11,8 @@ public class Main {
         try {
             SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
             try (Session session = sessionFactory.openSession()) {
-                Query<Cafes> query = session.createQuery("FROM Cafes", Cafes.class);
-                for (Cafes c: query.list()) {
+                Query<InfoPais> query = session.createQuery("FROM Cafes", InfoPais.class);
+                for (InfoPais c: query.list()) {
                     System.out.println(c);
                 }
             }
