@@ -8,24 +8,21 @@ import java.util.Set;
 @Table(name = "info_pais")
 public class InfoPais {
     @Id
-    private int id;
+    private int id =0;
     @Column(name = "pais")
     private String pais="";
-    @Column(name = "año  2016/17")
+    @Column(name = "año_2016_17")
     private int Anos2016_17=0;
-    @Column(name = "año  2017/18")
+    @Column(name = "año_2017_18")
     private int Anos2017_18=0;
-    @Column(name = "año  2018/19")
+    @Column(name = "año_2018_19")
     private int Anos2018_19=0;
-    @Column(name = "año  2019/20")
+    @Column(name = "año_2019_20")
     private int Anos2019_20=0;
     @Column(name = "Total")
     private int Total_domestic_consumption=0;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
             name = "infopais_cafetypes",
             joinColumns = @JoinColumn(name = "pais_id"),
@@ -90,5 +87,8 @@ public class InfoPais {
 
     public void setCafeTypes(Set<CafeTypes> cafeTypes) {
         this.cafeTypes = cafeTypes;
+    }
+
+    public void setId(int i) {
     }
 }

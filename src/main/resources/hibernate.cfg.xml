@@ -15,7 +15,8 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
 
-        <mapping class="Games"/>
+        <mapping class="Entidades.CafeTypes"/>
+        <mapping class="Entidades.InfoPais"/>
 
     </session-factory>
 </hibernate-configuration>

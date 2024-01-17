@@ -7,13 +7,11 @@ import java.util.Set;
 @Table(name = "cafes_types")
 public class CafeTypes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(cascade = CascadeType.ALL)
-    private int id;
-    @Column(name = "cafe type")
-    private String cafeType;
+    private int id = 0;
+    @Column(name = "cafe_type")
+    private String cafeType="";
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "cafeTypes", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Set<InfoPais> paises = new HashSet<>();
 
 
