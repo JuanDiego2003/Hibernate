@@ -20,7 +20,7 @@ public class InfoPais {
     @Column(name = "ano_2019_20")
     private int Anos2019_20=0;
     @Column(name = "total")
-    private int Total_domestic_consumption=0;
+    private long Total_domestic_consumption=0;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
@@ -73,16 +73,24 @@ public class InfoPais {
         Anos2019_20 = anos2019_20;
     }
 
-    public int getTotal_domestic_consumption() {
+    public long getTotal_domestic_consumption() {
         return Total_domestic_consumption;
     }
 
-    public void setTotal_domestic_consumption(int total_domestic_consumption) {
+    public void setTotal_domestic_consumption(long total_domestic_consumption) {
         Total_domestic_consumption = total_domestic_consumption;
     }
 
 
 
     public void setId(int i) {
+    }
+
+    public Set<CafeTypes> getCafeTypes() {
+        return cafeTypes;
+    }
+
+    public void setCafeTypes(Set<CafeTypes> cafeTypes) {
+        this.cafeTypes = cafeTypes;
     }
 }
