@@ -14,5 +14,27 @@ public class CafeTypes {
     @ManyToMany(mappedBy = "cafeTypes", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Set<InfoPais> paises = new HashSet<>();
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCafeType() {
+        return cafeType;
+    }
+
+    public void setCafeType(String cafeType) {
+        this.cafeType = cafeType;
+    }
+
+    public Set<InfoPais> getPaises() {
+        return paises;
+    }
+
+    public void setPaises(Set<InfoPais> paises) {
+        this.paises = paises;
+    }
 }

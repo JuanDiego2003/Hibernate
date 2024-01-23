@@ -8,18 +8,18 @@ import java.util.Set;
 @Table(name = "info_pais")
 public class InfoPais {
     @Id
-    private int id =0;
+    private int id =1;
     @Column(name = "pais")
     private String pais="";
-    @Column(name = "año_2016_17")
+    @Column(name = "ano_2016_17")
     private int Anos2016_17=0;
-    @Column(name = "año_2017_18")
+    @Column(name = "ano_2017_18")
     private int Anos2017_18=0;
-    @Column(name = "año_2018_19")
+    @Column(name = "ano_2018_19")
     private int Anos2018_19=0;
-    @Column(name = "año_2019_20")
+    @Column(name = "ano_2019_20")
     private int Anos2019_20=0;
-    @Column(name = "Total")
+    @Column(name = "total")
     private int Total_domestic_consumption=0;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -81,13 +81,7 @@ public class InfoPais {
         Total_domestic_consumption = total_domestic_consumption;
     }
 
-    public Set<CafeTypes> getCafeTypes() {
-        return cafeTypes;
-    }
 
-    public void setCafeTypes(Set<CafeTypes> cafeTypes) {
-        this.cafeTypes = cafeTypes;
-    }
 
     public void setId(int i) {
     }
