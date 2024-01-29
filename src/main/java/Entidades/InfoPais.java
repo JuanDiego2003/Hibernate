@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "info_pais")
 public class InfoPais {
     @Id
-    private int id =1;
+    private int id ;
     @Column(name = "pais")
     private String pais="";
     @Column(name = "ano_2016_17")
@@ -31,6 +31,10 @@ public class InfoPais {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPais() {
@@ -83,8 +87,7 @@ public class InfoPais {
 
 
 
-    public void setId(int i) {
-    }
+
 
     public Set<CafeTypes> getCafeTypes() {
         return cafeTypes;

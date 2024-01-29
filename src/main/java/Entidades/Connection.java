@@ -13,7 +13,6 @@ public class Connection {
             session = sessionFactory.openSession();
             threadLocal.set(session);
         }
-
         return session;
     }
     public static void closeSession() throws HibernateException {

@@ -1,35 +1,40 @@
-import Entidades.Connection;
+import Entidades.CafeTypes;
+import Entidades.CafeTypesDAO;
 import Entidades.InfoPais;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import Entidades.InfoPaisDAO;
+
+import java.util.LinkedList;
+import java.util.Scanner;
 
 
 public class Main {
-
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Bienbenido a la base de datos de Cafetype");
         DatosVO datosVO = new DatosVO();
-        LeerArchivo.leerArchivo(datosVO);
-        System.out.println(datosVO.getListCafeTypes().size());
-        /*
-        try {
-            Session session = Connection.getSession();
-            session.beginTransaction();
-                InfoPais infoPais = new InfoPais();
-                infoPais.setId(1);
-                infoPais.setPais("col");
-                infoPais.setAnos2016_17(1);
-                infoPais.setAnos2017_18(2);
-                infoPais.setAnos2018_19(3);
-                infoPais.setAnos2019_20(4);
-                infoPais.setTotal_domestic_consumption(10);
-                session.save(infoPais);
-                session.getTransaction().commit();
-            System.out.println("sdf");
-
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }*/
+        PreparInsertar.InsertarInicial(datosVO);
+        boolean continuar = false;
+        do {
+            System.out.println("Escoge con que tabla quieres usar");
+            System.out.println("1. InfoPais");
+            System.out.println("2. Cafetypes");
+            System.out.println("3. Salir");
+            String opcion = sc.nextLine();
+            switch (opcion.toLowerCase()) {
+                case "1":
+                    MenuInfoPais.Menu(datosVO);
+                    break;
+                case "2":
+                    MenuCafeTypes.Menu(datosVO);
+                    break;
+                case "3":
+                    continuar = true;
+                    break;
+                default:
+                    System.out.println("introduce una opcion correcta");
+                    break;
+            }
+        } while (continuar);
     }
 }
+

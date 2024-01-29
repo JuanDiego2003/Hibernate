@@ -36,5 +36,6 @@ public class CafeTypes {
 
     public void setPaises(Set<InfoPais> paises) {
         this.paises = paises;
+
     }
 }

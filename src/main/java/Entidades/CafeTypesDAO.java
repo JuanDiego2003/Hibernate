@@ -5,46 +5,42 @@ import org.hibernate.query.Query;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class InfoPaisDAO {
-    public static void ConsultarInfoPais(List<InfoPais> listInfoPais) {
+public class CafeTypesDAO {
+    public static void ConsultarCafeTypes(List<CafeTypes> listCafeTypes){
         Session session = Connection.getSession();
         session.beginTransaction();
-        Query<InfoPais> query = session.createQuery("FROM InfoPais", InfoPais.class);
-        listInfoPais.addAll(query.list());
+        Query<CafeTypes> query = session.createQuery("FROM CafeTypes", CafeTypes.class);
+        listCafeTypes.addAll(query.list());
         session.getTransaction().commit();
     }
-
-    public static void InsertarInfoPais(InfoPais infoPais) {
+    public static void InsertarCafeTypes(CafeTypes cafeTypes){
         Session session = Connection.getSession();
-        session.clear();
         session.beginTransaction();
-        session.save(infoPais);
+        session.save(cafeTypes);
         session.getTransaction().commit();
 
     }
-
-    public static void EliminarInfoPais(InfoPais infoPais) {
+    public static void EliminarCafeTypes (CafeTypes cafeTypes){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             // Paso 1: Persistir el objeto en la base de datos
-            entityManager.persist(infoPais);
+            entityManager.persist(cafeTypes);
             entityManager.flush();
             entityManager.clear();
 
-            infoPais = entityManager.find(InfoPais.class, infoPais.getId());
-            assert infoPais != null; // Puedes usar las aserciones de tu elección
+            cafeTypes = entityManager.find(CafeTypes.class, cafeTypes.getId());
+            assert cafeTypes != null; // Puedes usar las aserciones de tu elección
             // Paso 3: Eliminar el objet
-            entityManager.remove(infoPais);
+            entityManager.remove(cafeTypes);
             entityManager.flush();
             entityManager.clear();
 
             // Paso 4: Verificar que el objeto realmente se haya eliminado
-            InfoPais infoPaisAfterRemoval = entityManager.find(InfoPais.class, infoPais.getId());
+            CafeTypes infoPaisAfterRemoval = entityManager.find(CafeTypes.class, cafeTypes.getId());
             if (infoPaisAfterRemoval==null){
                 System.out.println("Se ha eliminado correctamente");
             }
@@ -54,5 +50,6 @@ public class InfoPaisDAO {
             entityManager.close();
             entityManagerFactory.close();
         }
+
     }
 }

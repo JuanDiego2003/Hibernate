@@ -33,7 +33,6 @@ public class LeerArchivo {
                     continue;
                 }
                 //Definicion de objetos
-                CafeTypes cafeTypes = new CafeTypes();
                 InfoPais infoPais = new InfoPais();
                 //Datos de InfoPais
                 infoPais.setId(idPais);
@@ -48,8 +47,10 @@ public class LeerArchivo {
                 String[] cafes = Separador(csvRecord.get(1));
                 //Comprobar el cafe si existe o no para guardarlo o recuperar la informacion ya guardada
                 for (String cafe : cafes) {
+                    CafeTypes cafeTypes = new CafeTypes();
                     if (mapaCafeTypes.containsKey(cafe)) {
-                        cafeTypes.setCafeType(String.valueOf(mapaCafeTypes.get(cafe)));
+                        cafeTypes.setId(mapaCafeTypes.get(cafe).getId());
+                        cafeTypes.setCafeType(mapaCafeTypes.get(cafe).getCafeType());
                     } else {
                         cafeTypes.setId(idCafe);
                         idCafe++;
