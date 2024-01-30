@@ -7,7 +7,7 @@ import java.util.Set;
 @Table(name = "cafes_types")
 public class CafeTypes {
     @Id
-    private int id = 0;
+    private int id;
     @Column(name = "cafe_type")
     private String cafeType="";
 

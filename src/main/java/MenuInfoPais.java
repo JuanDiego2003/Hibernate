@@ -1,3 +1,5 @@
+import Entidades.InfoPaisDAO;
+
 import java.util.Scanner;
 
 public class MenuInfoPais {
@@ -17,12 +19,20 @@ public class MenuInfoPais {
             String opcion = sc.nextLine();
             switch (opcion.toLowerCase()) {
                 case "1":
+                    System.out.println("Como quieres consultar");
+                    PrepararConsultar.TipoConsulta(datosVO, "pais", false);
+                    InfoPaisDAO.ConsultarInfoPais(datosVO.getListInfoPais());
+                    MostrarResultados.ResultadosInfoPais(datosVO.getListInfoPais());
                     break;
                 case "2":
+                    PreparInsertar.InsertarInfoPais(datosVO);
                     break;
                 case "3":
+                    System.out.println("Como quiere eliminar");
+                    PrepararEliminar.EliminarInfoPais(datosVO);
                     break;
                 case "4":
+
                     break;
                 case "5":
                     continuar = true;
@@ -31,7 +41,7 @@ public class MenuInfoPais {
                     System.out.println("introduce una opcion correcta");
                     break;
             }
-        }while (!continuar);
+        } while (!continuar);
 
 
     }

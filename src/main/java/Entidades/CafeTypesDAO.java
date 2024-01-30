@@ -9,47 +9,57 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class CafeTypesDAO {
-    public static void ConsultarCafeTypes(List<CafeTypes> listCafeTypes){
+    public static void ConsultarCafeTypes(List<CafeTypes> listCafeTypes) {
         Session session = Connection.getSession();
         session.beginTransaction();
-        Query<CafeTypes> query = session.createQuery("FROM CafeTypes", CafeTypes.class);
-        listCafeTypes.addAll(query.list());
+        String consul = "FROM CafeTypes";
+        if (!listCafeTypes.isEmpty()) {
+            if (listCafeTypes.get(0) != null) {
+                if (listCafeTypes.get(0).getId() != 0) {
+                    consul += " WHERE id = :id";
+                    Query<CafeTypes> query = session.createQuery(consul, CafeTypes.class);
+                    query.setParameter("id", listCafeTypes.get(0).getId());
+                    listCafeTypes.clear();
+                    listCafeTypes.addAll(query.list());
+                } else if (!listCafeTypes.get(0).getCafeType().isEmpty()) {
+                    consul += " WHERE cafeType = :cafe";
+                    System.out.println(consul);
+                    Query<CafeTypes> query = session.createQuery(consul, CafeTypes.class);
+                    query.setParameter("cafe", listCafeTypes.get(0).getCafeType());
+                    System.out.println(listCafeTypes.get(0).getCafeType());
+                    listCafeTypes.clear();
+                    listCafeTypes.addAll(query.list());
+                }
+            } else {
+                listCafeTypes.clear();
+                Query<CafeTypes> query = session.createQuery(consul, CafeTypes.class);
+                listCafeTypes.addAll(query.list());
+            }
+        } else {
+            listCafeTypes.clear();
+            Query<CafeTypes> query = session.createQuery(consul, CafeTypes.class);
+            listCafeTypes.addAll(query.list());
+        }
+
         session.getTransaction().commit();
     }
-    public static void InsertarCafeTypes(CafeTypes cafeTypes){
+
+    public static void InsertarCafeTypes(CafeTypes cafeTypes) {
         Session session = Connection.getSession();
         session.beginTransaction();
         session.save(cafeTypes);
         session.getTransaction().commit();
 
     }
-    public static void EliminarCafeTypes (CafeTypes cafeTypes){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            // Paso 1: Persistir el objeto en la base de datos
-            entityManager.persist(cafeTypes);
-            entityManager.flush();
-            entityManager.clear();
+    public static void ActualizarCafeTypes(CafeTypes cafeTypes){
 
-            cafeTypes = entityManager.find(CafeTypes.class, cafeTypes.getId());
-            assert cafeTypes != null; // Puedes usar las aserciones de tu elección
-            // Paso 3: Eliminar el objet
-            entityManager.remove(cafeTypes);
-            entityManager.flush();
-            entityManager.clear();
-
-            // Paso 4: Verificar que el objeto realmente se haya eliminado
-            CafeTypes infoPaisAfterRemoval = entityManager.find(CafeTypes.class, cafeTypes.getId());
-            if (infoPaisAfterRemoval==null){
-                System.out.println("Se ha eliminado correctamente");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
-
+    }
+    public static void EliminarCafeTypes(CafeTypes cafeTypes) {
+        Session session = Connection.getSession();
+        session.clear();
+        session.beginTransaction();
+        cafeTypes = session.find(CafeTypes.class, cafeTypes.getId());
+        session.remove(cafeTypes);
+        session.getTransaction().commit();
     }
 }

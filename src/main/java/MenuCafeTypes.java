@@ -1,3 +1,5 @@
+import Entidades.CafeTypesDAO;
+
 import java.util.Scanner;
 
 public class MenuCafeTypes {
@@ -15,11 +17,17 @@ public class MenuCafeTypes {
             String opcion = sc.nextLine();
             switch (opcion.toLowerCase()) {
                 case "1":
-
+                    System.out.println("Como quieres consultar");
+                    PrepararConsultar.TipoConsulta(datosVO,"cafe",false);
+                    CafeTypesDAO.ConsultarCafeTypes(datosVO.getListCafeTypes());
+                    MostrarResultados.ResultadosCafeTypes(datosVO.getListCafeTypes());
                     break;
                 case "2":
+                    PreparInsertar.InsertarCafeTypes(datosVO);
                     break;
                 case "3":
+                    System.out.println("Como quiere eliminar");
+                    PrepararEliminar.EliminarCafeTypes(datosVO);
                     break;
                 case "4":
                     break;
