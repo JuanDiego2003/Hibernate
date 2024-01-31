@@ -11,6 +11,7 @@ public class MostrarResultados {
             System.out.println(list.getId() + "       " + list.getPais() + "         " + list.getAnos2016_17() + "         " + list.getAnos2017_18() + "         " + list.getAnos2018_19() + "         " + list.getAnos2019_20());
         }
     }
+
     public static void ResultadosCafeTypes(List<CafeTypes> listCafeTypes) {
         for (CafeTypes list : listCafeTypes) {
             System.out.println("id       cafe");

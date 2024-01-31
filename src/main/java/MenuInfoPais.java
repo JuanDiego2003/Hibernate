@@ -32,7 +32,7 @@ public class MenuInfoPais {
                     PrepararEliminar.EliminarInfoPais(datosVO);
                     break;
                 case "4":
-
+                    PrepararActualizar.ActualizarInfoPais(datosVO);
                     break;
                 case "5":
                     continuar = true;

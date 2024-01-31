@@ -66,4 +66,11 @@ public class InfoPaisDAO {
         }
         session.getTransaction().commit();
     }
+    public static void ActualizarInfoPais(List<InfoPais> infoPaises){
+        Session session = Connection.getSession();
+        session.clear();
+        session.beginTransaction();
+        session.save(infoPaises.get(0));
+        session.evict(infoPaises.get(1));
+    }
 }

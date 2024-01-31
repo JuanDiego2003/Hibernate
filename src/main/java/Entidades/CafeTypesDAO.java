@@ -51,8 +51,13 @@ public class CafeTypesDAO {
         session.getTransaction().commit();
 
     }
-    public static void ActualizarCafeTypes(CafeTypes cafeTypes){
-
+    public static void ActualizarCafeTypes(List<CafeTypes> cafeTypes){
+            Session session = Connection.getSession();
+            session.clear();
+            session.beginTransaction();
+            session.save(cafeTypes.get(0));
+            session.evict(cafeTypes.get(0));
+            session.update(cafeTypes.get(1));
     }
     public static void EliminarCafeTypes(CafeTypes cafeTypes) {
         Session session = Connection.getSession();
