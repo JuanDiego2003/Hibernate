@@ -15,7 +15,6 @@ public class MenuInfoPais {
             System.out.println("3. Eliminar");
             System.out.println("4. Editar");
             System.out.println("5. Salir");
-
             String opcion = sc.nextLine();
             switch (opcion.toLowerCase()) {
                 case "1":

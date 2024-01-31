@@ -1,5 +1,6 @@
 import Entidades.CafeTypes;
 import Entidades.CafeTypesDAO;
+import Entidades.InfoPais;
 import Entidades.InfoPaisDAO;
 
 public class PrepararActualizar {
@@ -11,8 +12,10 @@ public class PrepararActualizar {
         }else{
             System.out.println("Los datos que hay guardados son: ");
             MostrarResultados.ResultadosInfoPais(datosVO.getListInfoPais());
-
-            InfoPaisDAO.EliminarInfoPais(datosVO.getListInfoPais().get(0));
+            InfoPais infoPais=ObtenerDatos.ObtenerInfoPais();
+            infoPais.setId(datosVO.getListInfoPais().get(0).getId());
+            datosVO.getListInfoPais().add(infoPais);
+            InfoPaisDAO.ActualizarInfoPais(datosVO.getListInfoPais());
         }
     }
     public static void ActualizarCafeTypes(DatosVO datosVO){

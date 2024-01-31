@@ -23,6 +23,7 @@ public class MenuCafeTypes {
                     MostrarResultados.ResultadosCafeTypes(datosVO.getListCafeTypes());
                     break;
                 case "2":
+                    datosVO.getListCafeTypes().clear();
                     PreparInsertar.InsertarCafeTypes(datosVO);
                     break;
                 case "3":
@@ -30,6 +31,7 @@ public class MenuCafeTypes {
                     PrepararEliminar.EliminarCafeTypes(datosVO);
                     break;
                 case "4":
+                    PrepararActualizar.ActualizarCafeTypes(datosVO);
                     break;
                 case "5":
                     continuar = true;
