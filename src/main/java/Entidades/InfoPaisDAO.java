@@ -3,9 +3,7 @@ package Entidades;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 import java.util.List;
 
 public class InfoPaisDAO {
@@ -44,7 +42,7 @@ public class InfoPaisDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
             session.close();
         }
@@ -62,27 +60,24 @@ public class InfoPaisDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
             session.close();
         }
     }
 
-    public static void ActualizarInfoPais(List<InfoPais> infoPaises) {
+    public static void ActualizarInfoPais(InfoPais infoPais) {
         Session session = Connection.getSession();
-        session.beginTransaction();
         try {
-            session.save(infoPaises.get(0));
-            session.update(infoPaises.get(1));
+            session.beginTransaction();
+            session.update(infoPais);
             session.getTransaction().commit();
-
             System.out.println("Actualizacion realizada");
-
         } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
             session.close();
         }
@@ -91,18 +86,17 @@ public class InfoPaisDAO {
     public static void EliminarInfoPais(InfoPais infoPais) {
         Session session = Connection.getSession();
         session.beginTransaction();
-        boolean correct = false;
+
         try {
             infoPais = session.find(InfoPais.class, infoPais.getId());
             session.remove(infoPais);
             session.getTransaction().commit();
             System.out.println("Eliminado correctamente");
-            correct = true;
         } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
 
             session.close();

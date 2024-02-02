@@ -42,9 +42,9 @@ public class CafeTypesDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
-            session.close();
+            session.clear();
         }
     }
 
@@ -60,7 +60,7 @@ public class CafeTypesDAO {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
             session.close();
         }
@@ -68,20 +68,18 @@ public class CafeTypesDAO {
 
     }
 
-    public static void ActualizarCafeTypes(List<CafeTypes> cafeTypes) {
+    public static void ActualizarCafeTypes(CafeTypes cafeType) {
         Session session = Connection.getSession();
-        session.beginTransaction();
         try {
-            session.save(cafeTypes.get(0));
-            session.update(cafeTypes.get(1));
-            System.out.println("Actualizacion realizada");
+            session.beginTransaction();
+            session.update(cafeType);
             session.getTransaction().commit();
-
+            System.out.println("Actualizacion realizada");
         } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
             session.close();
         }
@@ -89,19 +87,17 @@ public class CafeTypesDAO {
 
     public static void EliminarCafeTypes(CafeTypes cafeTypes) {
         Session session = Connection.getSession();
-        session.beginTransaction();
-        boolean correct = false;
         try {
+            session.beginTransaction();
             cafeTypes = session.find(CafeTypes.class, cafeTypes.getId());
             session.remove(cafeTypes);
             session.getTransaction().commit();
             System.out.println("Eliminado correctamente");
-            correct = true;
         } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("se ha producido un error");
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } finally {
             session.close();
         }

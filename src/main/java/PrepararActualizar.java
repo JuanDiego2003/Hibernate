@@ -14,9 +14,10 @@ public class PrepararActualizar {
             MostrarResultados.ResultadosInfoPais(datosVO.getListInfoPais());
             InfoPais infoPais=ObtenerDatos.ObtenerInfoPais();
             infoPais.setId(datosVO.getListInfoPais().get(0).getId());
-            datosVO.getListInfoPais().add(infoPais);
-            InfoPaisDAO.ActualizarInfoPais(datosVO.getListInfoPais());
+            InfoPaisDAO.ActualizarInfoPais(infoPais);
         }
+        datosVO.getListInfoPais().clear();
+
     }
     public static void ActualizarCafeTypes(DatosVO datosVO){
         PrepararConsultar.TipoConsulta(datosVO,"cafetypes",true);
@@ -29,8 +30,8 @@ public class PrepararActualizar {
             MostrarResultados.ResultadosCafeTypes(datosVO.getListCafeTypes());
             CafeTypes cafeType=ObtenerDatos.ObtenerCafeTypes();
             cafeType.setId(datosVO.getListCafeTypes().get(0).getId());
-            datosVO.getListCafeTypes().add(cafeType);
-            CafeTypesDAO.ActualizarCafeTypes(datosVO.getListCafeTypes());
+            CafeTypesDAO.ActualizarCafeTypes(cafeType);
         }
+        datosVO.getListCafeTypes().clear();
     }
 }

@@ -1,6 +1,6 @@
 package Entidades;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 @Entity
@@ -11,7 +11,7 @@ public class CafeTypes {
     @Column(name = "cafe_type")
     private String cafeType="";
 
-    @ManyToMany(mappedBy = "cafeTypes", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(mappedBy = "cafeTypes", cascade = { CascadeType.REMOVE })
     private Set<InfoPais> paises = new HashSet<>();
 
     public int getId() {

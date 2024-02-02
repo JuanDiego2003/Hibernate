@@ -13,7 +13,7 @@ public class Main {
         System.out.println("Bienbenido a la base de datos de Cafetype");
         DatosVO datosVO = new DatosVO();
         PreparInsertar.InsertarInicial(datosVO);
-        boolean continuar = false;
+        boolean continuar = true;
         do {
             System.out.println("Escoge con que tabla quieres usar");
             System.out.println("1. InfoPais");
@@ -28,7 +28,7 @@ public class Main {
                     MenuCafeTypes.Menu(datosVO);
                     break;
                 case "3":
-                    continuar = true;
+                    continuar = false;
                     break;
                 default:
                     System.out.println("introduce una opcion correcta");
